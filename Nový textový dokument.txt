@@ -1,0 +1,73 @@
+import { useState } from react;
+import { Card, CardContent } from @componentsuicard;
+import { Button } from @componentsuibutton;
+import { Input } from @componentsuiinput;
+
+export default function Home() {
+  const [role, setRole] = useState(none);
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  const handleLogin = () = {
+    if (username === admin && password === admin123) {
+      setRole(admin);
+    } else if (username === kuryr && password === kuryr123) {
+      setRole(courier);
+    } else {
+      alert(Nesprávné přihlašovací údaje);
+    }
+  };
+
+  if (role === admin) {
+    return (
+      div className=p-4 space-y-4
+        h1 className=text-2xl font-boldAdmin Dashboardh1
+        Card
+          CardContent className=p-4
+            p✔ Přehled řidičůp
+            p✔ Stav vozidel (STK, pojištění)p
+            p✔ Docházka a výkazyp
+            p✔ Fakturace a export datp
+          CardContent
+        Card
+        Button onClick={() = setRole(none)}OdhlásitButton
+      div
+    );
+  }
+
+  if (role === courier) {
+    return (
+      div className=p-4 space-y-4
+        h1 className=text-2xl font-boldKurýrský panelh1
+        Card
+          CardContent className=p-4
+            p👋 Ahoj, zde budeš vidět své směny, výkazy a fakturyp
+          CardContent
+        Card
+        Button onClick={() = setRole(none)}OdhlásitButton
+      div
+    );
+  }
+
+  return (
+    div className=flex flex-col items-center justify-center min-h-screen p-4
+      h1 className=text-xl font-bold mb-4Přihlášeníh1
+      div className=space-y-2 w-full max-w-sm
+        Input
+          placeholder=Uživatelské jméno
+          value={username}
+          onChange={(e) = setUsername(e.target.value)}
+        
+        Input
+          placeholder=Heslo
+          type=password
+          value={password}
+          onChange={(e) = setPassword(e.target.value)}
+        
+        Button className=w-full onClick={handleLogin}
+          Přihlásit se
+        Button
+      div
+    div
+  );
+}
